@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+backend/logs/
+*.log
+
+# Uploaded Files
+backend/uploads/*
+backend/extracted/*
+backend/temp/*
+
+# Keep folders
+!backend/uploads/.gitkeep
+!backend/extracted/.gitkeep
+!backend/temp/.gitkeep
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Build
+build/
+dist/
+*.egg-info/
