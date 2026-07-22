@@ -1,15 +1,11 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
-from backend.schemas.resume import ResumeUploadResponse
-from backend.services.storage_service import StorageService
+from backend.services.resume_service import ResumeService
 
 router = APIRouter()
 
 
-@router.post(
-    "/resume/upload",
-    response_model=ResumeUploadResponse
-)
+@router.post("/resume/upload")
 async def upload_resume(
     resume: UploadFile = File(...)
 ):
@@ -20,11 +16,4 @@ async def upload_resume(
             detail="Only PDF, DOC and DOCX files are allowed."
         )
 
-    candidate_id, filename, _ = await StorageService.save_resume(resume)
-
-    return ResumeUploadResponse(
-        candidate_id=candidate_id,
-        file_name=filename,
-        status="uploaded",
-        message="Resume uploaded successfully."
-    )
+    return await ResumeService.process_resume(resume)
